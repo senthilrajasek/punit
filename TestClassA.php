@@ -20,7 +20,7 @@ Class TestClassA extends TestCase
 {
 	public function setUp()
 	{
-		echo ' TestClassA : setUp() ************';
+		echo ' TestClassA : setUp() ', PHP_EOL;
 	}
 
 	public function TestAdd()
@@ -28,13 +28,14 @@ Class TestClassA extends TestCase
 		$a = new ClassA();
 		$sum = $a->Add( 2 , 4 );
 
-		echo 'Sum: ' , $sum;
+		echo 'Sum: ' , $sum, PHP_EOL;
 
 		AssertEqual( $sum, 6 );
 	}
 
 	public function tearDown()
 	{
+		echo ' TestClassA : tearDown() ', PHP_EOL;
 	}
 
 }

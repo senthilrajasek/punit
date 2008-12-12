@@ -18,7 +18,7 @@ else
 	}
 }
 
-Abstract Class TestCase
+abstract Class TestCase
 {
 
 }

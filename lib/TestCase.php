@@ -12,11 +12,19 @@ else
 	{
 		require_once( '../config.php' );
 	}
+	
+	else if( file_exists( '../../config.php' ) )
+	{
+		require_once( '../../config.php' );
+	}
 	else
 	{
 		echo 'TestCase.php : Cannot locate config.php';
 	}
 }
+
+require_once( ABSPATH . PUNIT_PATH . 'testcases.css');
+require_once( ABSPATH . PUNIT_PATH . 'HtmlMessages.php');
 
 abstract Class TestCase
 {
@@ -28,15 +36,62 @@ abstract Class TestCase
  *
  *
  */
-function AssertEqual($a, $b)
+function AssertEqual($a, $b, $successMessage = null, $failureMessage = null )
 {
+	if( !$successMessage )
+		$successMessage = "TestCase.php -- AssertEqual() : Success.";
+	if( !$errorMessage )
+		$errorMessage = "TestCase.php -- AssertEqual() : Failed.";
+		
 	if( $a == $b )
-		echo 'Success.';
+	{
+		printHtmlSuccess( $successMessage );
+	}
 	else
 	{
-		echo 'Assert failed.';
+		printHtmlFailure( $errorMessage );
 		debug_print_backtrace();
-		exit();
+		exit;
+	}
+}
+
+function AssertTrue( $value, $successMessage = null, $errorMessage = null )
+{
+	if( !$successMessage )
+		$successMessage = "TestCase.php -- AssertTrue() : Success.";
+	if( !$errorMessage )
+		$errorMessage = "TestCase.php -- AssertTrue() : Failed.";
+		
+	if( $value )
+	{
+		printHtmlSuccess( $successMessage );
+		return true;
+	}
+	else
+	{
+		printHtmlFailure( $errorMessage );
+		debug_print_backtrace();
+		exit;
+	}
+}
+
+function AssertNotNull( $object, $successMessage = null, $errorMessage = null )
+{
+	if( !$successMessage )
+		$successMessage = "TestCase.php -- AssertNotNull() : Success.";
+	if( !$errorMessage )
+		$errorMessage = "TestCase.php -- AssertNotNull() : Failed.";
+		
+	if( $object )
+	{
+		printHtmlSuccess( $successMessage );
+		return true;
+	}
+	else
+	{
+		printHtmlFailure( $errorMessage );
+		debug_print_backtrace();
+		exit;
 	}
 }
 

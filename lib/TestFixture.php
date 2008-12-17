@@ -11,6 +11,10 @@ else
 	{
 		require_once( '../config.php' );
 	}
+	else if( file_exists( '../../config.php' ) )
+	{
+		require_once( '../../config.php' );
+	}
 	else
 	{
 		echo 'TestFixture.php : Cannot locate config.php';

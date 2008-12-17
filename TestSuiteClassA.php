@@ -13,7 +13,7 @@ else
 	}
 }
 
-require_once ( ABSPATH . 'lib/TestSuite.php' );
+require_once ( ABSPATH . PUNIT_PATH . 'TestSuite.php' );
 
 
 $suite = new TestSuite();
@@ -26,4 +26,15 @@ $suite->add( 'TestClassA' );
 
 $suite->run();
 
-$suite->getResults();
+$results = $suite->getResults();
+
+foreach( $results as $result )
+{
+	echo ' Test Case Name : ' , $result->getName();
+	echo ' Total Time : ', $result->getTotalTime();
+	echo ' Successes : ', $result->getTotalSuccesses();
+	echo ' Failures : ', $result->getTotalFailures();
+	echo ' Errors : ', $result->getTotalErrors();
+	
+}
+

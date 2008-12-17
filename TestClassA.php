@@ -13,8 +13,10 @@ else
 	}
 }
 
-require_once ( ABSPATH . 'lib/TestCase.php' );
+
 require_once ( ABSPATH . 'ClassA.php' );
+
+require_once ( ABSPATH . PUNIT_PATH .'TestCase.php' );
 
 Class TestClassA extends TestCase
 {
@@ -30,6 +32,8 @@ Class TestClassA extends TestCase
 
 		echo 'Sum: ' , $sum, PHP_EOL;
 
+		sleep(1);
+		
 		AssertEqual( $sum, 6 );
 	}
 
